@@ -24,11 +24,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick LinguistTools REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick LinguistTools REQUIRED)
 
 set(H_FILES
-    mainwindow.h
     encryptionalgorithm.h
     transpositioncipher.h
     magicsquarecipher.h
@@ -36,7 +35,6 @@ set(H_FILES
 
 set(CPP_FILES
     main.cpp
-    mainwindow.cpp
     encryptionalgorithm.cpp
     transpositioncipher.cpp
     magicsquarecipher.cpp
@@ -45,8 +43,7 @@ set(CPP_FILES
 set(PROJECT_SOURCES
         ${CPP_FILES}
         ${H_FILES}
-
-        mainwindow.ui
+        qml.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -65,4 +62,4 @@ else()
     endif()
 endif()
 
-target_link_libraries(AndroidSimpleProject PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(AndroidSimpleProject PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
