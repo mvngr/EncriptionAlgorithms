@@ -1,6 +1,6 @@
 #include "encryptionalgorithm.h"
 
-EncryptionAlgorithm::EncryptionAlgorithm()
+EncryptionAlgorithm::EncryptionAlgorithm(QObject *parent) : QObject(parent)
 {
 
 }

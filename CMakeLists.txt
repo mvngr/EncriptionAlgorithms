@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.15)
 
 project(AndroidSimpleProject LANGUAGES CXX)
 
@@ -62,4 +62,6 @@ else()
     endif()
 endif()
 
+target_compile_definitions(AndroidSimpleProject
+  PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(AndroidSimpleProject PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)

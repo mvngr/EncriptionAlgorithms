@@ -2,7 +2,12 @@
 
 #include <QDebug>
 
-TranspositionCipher::TranspositionCipher(std::size_t offsetSize) : EncryptionAlgorithm(), key_(offsetSize)
+TranspositionCipher::TranspositionCipher(QObject *parent) : EncryptionAlgorithm(parent), key_(1)
+{
+
+}
+
+TranspositionCipher::TranspositionCipher(std::size_t offsetSize, QObject *parent) : EncryptionAlgorithm(parent), key_(offsetSize)
 {
 
 }

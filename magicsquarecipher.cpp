@@ -1,6 +1,11 @@
 #include "magicsquarecipher.h"
 
-MagicSquareCipher::MagicSquareCipher(const Matrix &magicSquare) : EncryptionAlgorithm()
+MagicSquareCipher::MagicSquareCipher(QObject *parent) : EncryptionAlgorithm(parent)
+{
+
+}
+
+MagicSquareCipher::MagicSquareCipher(const Matrix &magicSquare, QObject *parent) : EncryptionAlgorithm(parent)
 {
     matrix_ = magicSquare;
 

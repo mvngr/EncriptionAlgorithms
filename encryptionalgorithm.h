@@ -4,10 +4,10 @@
 #include <QString>
 #include <QObject>
 
-class EncryptionAlgorithm
+class EncryptionAlgorithm : public QObject
 {
+    Q_OBJECT
 public:
-
 
     virtual ~EncryptionAlgorithm();
     virtual QString encrypt(const QString &textForEncrypt) = 0;
@@ -16,7 +16,7 @@ public:
     bool hasError() const;
 
 protected:
-    EncryptionAlgorithm();
+    explicit EncryptionAlgorithm(QObject *parent = nullptr);
     QString error_;
 };
 
