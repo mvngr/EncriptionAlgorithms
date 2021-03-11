@@ -11,8 +11,9 @@ public:
     TranspositionCipher(std::size_t offsetSize, QObject *parent = nullptr);
     virtual ~TranspositionCipher();
 
-    Q_INVOKABLE QString encrypt(const QString &textForEncrypt) override;
-    Q_INVOKABLE QString decrypt(const QString &encryptedText) override;
+    QString encrypt(const QString &textForEncrypt) override;
+    QString decrypt(const QString &encryptedText) override;
+    QString defaultKey() override;
 
 private:
 //    std::pair<QChar, QChar> cyrillicRange_= std::make_pair(L'а', L'Я');

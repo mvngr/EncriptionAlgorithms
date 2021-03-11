@@ -42,7 +42,7 @@ QString MagicSquareCipher::encrypt(const QString &textForEncrypt)
 
     if( matrixSize_ != static_cast<std::size_t>(textForEncrypt.size()) )
     {
-        error_.append(QString("Количество символов в тексте не соответсвтует количеству значений в магическом квадрате"));
+        error_ = QString("Количество символов в тексте не соответсвтует количеству значений в магическом квадрате");
     }
     else
     {
@@ -60,6 +60,8 @@ QString MagicSquareCipher::encrypt(const QString &textForEncrypt)
 
 QString MagicSquareCipher::decrypt(const QString &encryptedText)
 {
+    QString res;
+
     if( matrixSize_ != static_cast<std::size_t>(encryptedText.size()) )
     {
         error_.append(QString("Количество символов в тексте не соответсвтует количеству значений в магическом квадрате"));
@@ -68,4 +70,11 @@ QString MagicSquareCipher::decrypt(const QString &encryptedText)
     {
 
     }
+
+    return res;
+}
+
+QString MagicSquareCipher::defaultKey()
+{
+    return "123";
 }

@@ -17,17 +17,40 @@ ApplicationWindow {
 
     font.pixelSize: fontSize
 
+    function currentClass()
+    {
+        var targetClass
 
+        switch(chiperChooser.model.get(chiperChooser.currentIndex).value)
+        {
+        case 'Transposition':
+            targetClass = transpositionCipher
+            break
+        case 'MagicSquare':
+            targetClass = magicSquareCipher
+            break
+        }
 
+        return targetClass
+    }
 
     Column {
         property var paddingSize: parent.width * 0.02
+        property var defaultWidth: width - paddingSize * 2
         anchors.fill: parent
         padding: paddingSize
 
+        MagicSquareCipher {
+            id: magicSquareCipher
+        }
+
+        TranspositionCipher {
+            id: transpositionCipher
+        }
+
         ComboBox {
             id: chiperChooser
-            width: parent.width - parent.paddingSize * 2
+            width: parent.defaultWidth
             textRole: "text"
 
             model: ListModel {
@@ -38,19 +61,42 @@ ApplicationWindow {
             }
 
             currentIndex: 0
+
+            onCurrentTextChanged: function() {
+                keyText.text = mainWindow.currentClass().defaultKey()
+            }
         }
 
         Text {
-            id: sourceTextPlaceholder
-            text: qsTr("Исходный текст:")
+            id: keyTextPlaceholder
+            text: qsTr("Ключ:")
             font.pixelSize: fontSize
             color: textColor
         }
 
+        TextField {
+            id: keyText
+            text: ""
+            width: parent.defaultWidth
+        }
+
+        Text {
+            id: sourceTextPlaceholder
+            text: qsTr("Исходный (расшифрованный) текст:")
+            font.pixelSize: fontSize
+            color: textColor
+        }
 
         TextField {
             id: sourceText
             text: ""
+            width: parent.defaultWidth
+        }
+
+
+        Button {
+            id: doEncrypt
+            text: qsTr("Зашифровать")
         }
 
         Text {
@@ -63,9 +109,39 @@ ApplicationWindow {
         TextField {
             id: encryptedText
             text: ""
+            width: parent.defaultWidth
         }
+
+        Button {
+            id: doDecrypt
+            text: qsTr("Расшифровать")
+        }
+
+        Text {
+            id: errors
+            text: ""
+            font.pixelSize: fontSize
+            color: '#ff6666'
+        }
+
     }
 
+    Connections{
+        target: doEncrypt
+        function onClicked() {
+            var targetClass = mainWindow.currentClass()
+            encryptedText.text = targetClass.encrypt(sourceText.text)
+            errors.text = targetClass.errorString()
+        }
+    }
+    Connections {
+        target: doDecrypt
+        function onClicked() {
+            var targetClass = mainWindow.currentClass()
+            sourceText.text = targetClass.decrypt(encryptedText.text)
+            errors.text = targetClass.errorString()
+        }
+    }
 }
 
 

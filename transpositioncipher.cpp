@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-TranspositionCipher::TranspositionCipher(QObject *parent) : EncryptionAlgorithm(parent), key_(1)
+TranspositionCipher::TranspositionCipher(QObject *parent) : EncryptionAlgorithm(parent), key_(5)
 {
 
 }
@@ -41,4 +41,9 @@ QString TranspositionCipher::decrypt(const QString &encryptedText)
     res = QString::fromWCharArray(arr, num);
 
     return res;
+}
+
+QString TranspositionCipher::defaultKey()
+{
+    return "5";
 }

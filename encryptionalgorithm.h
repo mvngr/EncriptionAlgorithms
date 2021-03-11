@@ -10,10 +10,11 @@ class EncryptionAlgorithm : public QObject
 public:
 
     virtual ~EncryptionAlgorithm();
-    virtual QString encrypt(const QString &textForEncrypt) = 0;
-    virtual QString decrypt(const QString &encryptedText) = 0;
-    virtual QString errorString() const;
-    bool hasError() const;
+    Q_INVOKABLE virtual QString encrypt(const QString &textForEncrypt) = 0;
+    Q_INVOKABLE virtual QString decrypt(const QString &encryptedText) = 0;
+    Q_INVOKABLE virtual QString defaultKey() = 0;
+    Q_INVOKABLE virtual QString errorString() const;
+    Q_INVOKABLE bool hasError() const;
 
 protected:
     explicit EncryptionAlgorithm(QObject *parent = nullptr);
