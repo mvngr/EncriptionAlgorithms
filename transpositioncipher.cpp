@@ -19,31 +19,39 @@ TranspositionCipher::~TranspositionCipher()
 
 QString TranspositionCipher::encrypt(const QString &textForEncrypt)
 {
-    QString res;
-
-    wchar_t arr[textForEncrypt.size()]; //Предусмотрительно заганяем в тип, при котором не полетит кирилица и латынь
-    int num = textForEncrypt.toWCharArray(arr);
-    for(int i = 0; i < textForEncrypt.size(); i++)
-        arr[i] += key_;
-    res = QString::fromWCharArray(arr, num);
-
-    return res;
+    return makeSymbolTransposition(textForEncrypt, key_);
 }
 
 QString TranspositionCipher::decrypt(const QString &encryptedText)
 {
-    QString res;
+    return makeSymbolTransposition(encryptedText, -key_);
+}
 
-    wchar_t arr[encryptedText.size()]; //Предусмотрительно заганяем в тип, при котором не полетит кирилица и латынь
-    int num = encryptedText.toWCharArray(arr);
-    for(int i = 0; i < encryptedText.size(); i++)
-        arr[i] -= key_;
+QString TranspositionCipher::makeSymbolTransposition(const QString &text, std::size_t offset)
+{
+    QString res;
+    wchar_t arr[text.size()]; //Предусмотрительно заганяем в тип, при котором не полетит кирилица и латынь
+    int num = text.toWCharArray(arr);
+    for(int i = 0; i < text.size(); i++)
+        arr[i] += offset;
     res = QString::fromWCharArray(arr, num);
 
     return res;
 }
 
-QString TranspositionCipher::defaultKey()
+QString TranspositionCipher::defaultKey() const
 {
     return "5";
+}
+
+bool TranspositionCipher::setKey(const QString &key)
+{
+    bool isOk = false;
+    std::size_t numberKey = key.toUInt(&isOk);
+    if(isOk)
+    {
+        key_ = numberKey;
+    }
+
+    return isOk;
 }

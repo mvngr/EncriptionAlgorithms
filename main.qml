@@ -78,6 +78,14 @@ ApplicationWindow {
             id: keyText
             text: ""
             width: parent.defaultWidth
+            onTextChanged: function() {
+                var currentClass = mainWindow.currentClass()
+                var isOk = currentClass.setKey(text)
+                if(isOk !== true)
+                {
+                    errors.text = currentClass.errorString()
+                }
+            }
         }
 
         Text {

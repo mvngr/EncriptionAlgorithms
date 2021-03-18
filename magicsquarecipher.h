@@ -17,7 +17,8 @@ public:
 
     QString encrypt(const QString &textForEncrypt) override;
     QString decrypt(const QString &encryptedText) override;
-    QString defaultKey() override;
+    QString defaultKey() const override;
+    bool setKey(const QString &key) override;
 
 private:
     Matrix matrix_;

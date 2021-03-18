@@ -1,5 +1,10 @@
 #include "magicsquarecipher.h"
 
+#include <QtMath>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+
 MagicSquareCipher::MagicSquareCipher(QObject *parent) : EncryptionAlgorithm(parent)
 {
 
@@ -60,7 +65,7 @@ QString MagicSquareCipher::encrypt(const QString &textForEncrypt)
 
 QString MagicSquareCipher::decrypt(const QString &encryptedText)
 {
-    QString res;
+    QString res(encryptedText.size());
 
     if( matrixSize_ != static_cast<std::size_t>(encryptedText.size()) )
     {
@@ -68,13 +73,64 @@ QString MagicSquareCipher::decrypt(const QString &encryptedText)
     }
     else
     {
-
+        for(int i = 0; i < encryptedText.size(); i++)
+        {
+            int row = i / matrix_.size();
+            int column = i % matrix_.size();
+            int cell = matrix_.at(row).at(column);
+            res[cell - 1] = encryptedText.at(i);
+        }
     }
 
     return res;
 }
 
-QString MagicSquareCipher::defaultKey()
+QString MagicSquareCipher::defaultKey() const
 {
-    return "123";
+    return "4,9,2;3,5,7;8,1,6;";
+}
+
+bool MagicSquareCipher::setKey(const QString &key)
+{
+    bool res = true;
+
+    std::size_t matrixSize = 0;
+    Matrix newMatrix;
+
+    QStringList rowList = key.split(";");
+    for(int i = 0; i < rowList.size(); i++)
+    {
+        if(rowList.at(i).isEmpty())
+            break;
+        newMatrix.push_back(std::vector<int>());
+        QStringList values = rowList.at(i).split(",");
+        bool isOk = false;
+        for(const auto &value : qAsConst(values))
+        {
+            int data = value.toInt(&isOk);
+            if(!isOk)
+            {
+                res = false;
+            }
+            else
+            {
+                newMatrix.at(i).push_back(data);
+            }
+        }
+
+        matrixSize += newMatrix.at(i).size();
+        if(!res)
+            break;
+    }
+    if(res)
+    {
+        matrix_ = newMatrix;
+        matrixSize_ = matrixSize;
+    }
+    else
+    {
+        error_ = tr("Ошибка при распознавании ключа\nИспользуйте \",\" для разделения значений и \";\" для разделения строк");
+    }
+
+    return res;
 }
