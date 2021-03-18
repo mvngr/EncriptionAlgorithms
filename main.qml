@@ -4,6 +4,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Controls.Material 2.15
 import Ciphers.Transposition 1.0
 import Ciphers.MagicSquare 1.0
+import Ciphers.Caesar 1.0
 
 ApplicationWindow {
     id: mainWindow
@@ -29,6 +30,9 @@ ApplicationWindow {
         case 'MagicSquare':
             targetClass = magicSquareCipher
             break
+        case 'Caesar':
+            targetClass = caesarCipher
+            break
         }
 
         return targetClass
@@ -48,6 +52,10 @@ ApplicationWindow {
             id: transpositionCipher
         }
 
+        CaesarCipher {
+            id: caesarCipher
+        }
+
         ComboBox {
             id: chiperChooser
             width: parent.defaultWidth
@@ -58,6 +66,7 @@ ApplicationWindow {
                 id: model
                 ListElement { text: qsTr("Шифр перестановок"); value: "Transposition" }
                 ListElement { text: qsTr("Шифр магический квадрат"); value: "MagicSquare" }
+                ListElement { text: qsTr("Шифр Цезаря"); value: "Caesar" }
             }
 
             currentIndex: 0

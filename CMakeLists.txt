@@ -31,6 +31,7 @@ set(H_FILES
     encryptionalgorithm.h
     transpositioncipher.h
     magicsquarecipher.h
+    caesarcipher.h
 )
 
 set(CPP_FILES
@@ -38,6 +39,7 @@ set(CPP_FILES
     encryptionalgorithm.cpp
     transpositioncipher.cpp
     magicsquarecipher.cpp
+    caesarcipher.cpp
 )
 
 set(PROJECT_SOURCES
