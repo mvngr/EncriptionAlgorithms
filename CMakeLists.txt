@@ -32,6 +32,10 @@ set(H_FILES
     transpositioncipher.h
     magicsquarecipher.h
     caesarcipher.h
+    gronsfeldcipher.h
+    dictionaries/dictionary.h
+    dictionaries/digitdictionary.h
+    dictionaries/cyrillicdictionary.h
 )
 
 set(CPP_FILES
@@ -40,6 +44,10 @@ set(CPP_FILES
     transpositioncipher.cpp
     magicsquarecipher.cpp
     caesarcipher.cpp
+    gronsfeldcipher.cpp
+    dictionaries/dictionary.cpp
+    dictionaries/digitdictionary.cpp
+    dictionaries/cyrillicdictionary.cpp
 )
 
 set(PROJECT_SOURCES

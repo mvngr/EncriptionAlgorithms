@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.15
 import Ciphers.Transposition 1.0
 import Ciphers.MagicSquare 1.0
 import Ciphers.Caesar 1.0
+import Ciphers.Gronsfeld 1.0
 
 ApplicationWindow {
     id: mainWindow
@@ -33,6 +34,9 @@ ApplicationWindow {
         case 'Caesar':
             targetClass = caesarCipher
             break
+        case 'Gronsfeld':
+            targetClass = gronsfeldCipher
+            break
         }
 
         return targetClass
@@ -56,6 +60,10 @@ ApplicationWindow {
             id: caesarCipher
         }
 
+        GronsfeldCipher {
+            id: gronsfeldCipher
+        }
+
         ComboBox {
             id: chiperChooser
             width: parent.defaultWidth
@@ -64,6 +72,7 @@ ApplicationWindow {
             model: ListModel {
 
                 id: model
+                ListElement { text: qsTr("Шифр Гронсфельда"); value: "Gronsfeld" }
                 ListElement { text: qsTr("Шифр перестановок"); value: "Transposition" }
                 ListElement { text: qsTr("Шифр магический квадрат"); value: "MagicSquare" }
                 ListElement { text: qsTr("Шифр Цезаря"); value: "Caesar" }
