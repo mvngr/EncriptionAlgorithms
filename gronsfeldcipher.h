@@ -16,6 +16,7 @@ public:
     bool setKey(const QString &key) override;
 
 private:
+    int indexOf(QChar value, std::vector<QChar> dictionary);
     QString key_;
     std::vector<std::vector<QChar>> matrix_;
     std::vector<QChar> textDictionary_;
