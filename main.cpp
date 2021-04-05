@@ -1,10 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include "transpositioncipher.h"
-#include "magicsquarecipher.h"
-#include "caesarcipher.h"
-#include "gronsfeldcipher.h"
+#include "ciphers/transpositioncipher.h"
+#include "ciphers/magicsquarecipher.h"
+#include "ciphers/caesarcipher.h"
+#include "ciphers/gronsfeldcipher.h"
 
 int main(int argc, char *argv[])
 {

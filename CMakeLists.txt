@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.7)
 
 project(AndroidSimpleProject LANGUAGES CXX)
 
@@ -29,10 +29,10 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick LinguistTools REQUIRED)
 
 set(H_FILES
     encryptionalgorithm.h
-    transpositioncipher.h
-    magicsquarecipher.h
-    caesarcipher.h
-    gronsfeldcipher.h
+    ciphers/transpositioncipher.h
+    ciphers/magicsquarecipher.h
+    ciphers/caesarcipher.h
+    ciphers/gronsfeldcipher.h
     dictionaries/dictionary.h
     dictionaries/digitdictionary.h
     dictionaries/cyrillicdictionary.h
@@ -41,10 +41,10 @@ set(H_FILES
 set(CPP_FILES
     main.cpp
     encryptionalgorithm.cpp
-    transpositioncipher.cpp
-    magicsquarecipher.cpp
-    caesarcipher.cpp
-    gronsfeldcipher.cpp
+    ciphers/transpositioncipher.cpp
+    ciphers/magicsquarecipher.cpp
+    ciphers/caesarcipher.cpp
+    ciphers/gronsfeldcipher.cpp
     dictionaries/dictionary.cpp
     dictionaries/digitdictionary.cpp
     dictionaries/cyrillicdictionary.cpp
