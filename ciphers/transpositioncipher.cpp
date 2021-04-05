@@ -23,15 +23,16 @@ QString TranspositionCipher::encrypt(const QString &textForEncrypt)
     QString text = textForEncrypt;
 
     //Добавляем пробелы до прямоугольника
-    if(textForEncrypt.size() % static_cast<int>(key_) > 0)
-        for(int i = 0; i < static_cast<int>(key_) - ( textForEncrypt.size() % static_cast<int>(key_) ); i++)
+    int intKey = static_cast<int>(key_);
+    if(textForEncrypt.size() % intKey > 0)
+        for(int i = 0; i < intKey - ( textForEncrypt.size() % intKey ); i++)
         {
             text += ' ';
         }
 
-    for(int i = 0; i < static_cast<int>(key_); i++)
+    for(int i = 0; i < intKey; i++)
     {
-        for(int j = 0; j < text.size() / static_cast<int>(key_); j++)
+        for(int j = 0; j < text.size() / intKey; j++)
         {
             encrypted += text.at(j * key_ + i);
         }
