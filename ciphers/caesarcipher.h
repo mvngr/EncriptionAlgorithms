@@ -6,8 +6,8 @@
 class CaesarCipher : public EncryptionAlgorithm
 {
 public:
-    CaesarCipher( QObject *parent = nullptr);
-    CaesarCipher(std::size_t key, QObject *parent = nullptr);
+    explicit CaesarCipher( QObject *parent = nullptr);
+    explicit CaesarCipher(std::size_t key, QObject *parent = nullptr);
 
     QString encrypt(const QString &textForEncrypt) override;
     QString decrypt(const QString &encryptedText) override;

@@ -7,8 +7,8 @@
 class GronsfeldCipher : public EncryptionAlgorithm
 {
 public:
-    GronsfeldCipher(QObject *parent = nullptr);
-    GronsfeldCipher(const QString &key, QObject *parent = nullptr);
+    explicit GronsfeldCipher(QObject *parent = nullptr);
+    explicit GronsfeldCipher(const QString &key, QObject *parent = nullptr);
 
     QString encrypt(const QString &textForEncrypt) override;
     QString decrypt(const QString &encryptedText) override;

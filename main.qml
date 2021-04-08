@@ -123,6 +123,11 @@ ApplicationWindow {
         Button {
             id: doEncrypt
             text: qsTr("Зашифровать")
+            onClicked: function() {
+                var targetClass = mainWindow.currentClass()
+                encryptedText.text = targetClass.encrypt(sourceText.text)
+                errors.text = targetClass.errorString()
+            }
         }
 
         Text {
@@ -141,6 +146,11 @@ ApplicationWindow {
         Button {
             id: doDecrypt
             text: qsTr("Расшифровать")
+            onClicked: function() {
+                var targetClass = mainWindow.currentClass()
+                sourceText.text = targetClass.decrypt(encryptedText.text)
+                errors.text = targetClass.errorString()
+            }
         }
 
         Text {
@@ -148,24 +158,6 @@ ApplicationWindow {
             text: ""
             font.pixelSize: fontSize
             color: '#ff6666'
-        }
-
-    }
-
-    Connections{
-        target: doEncrypt
-        function onClicked() {
-            var targetClass = mainWindow.currentClass()
-            encryptedText.text = targetClass.encrypt(sourceText.text)
-            errors.text = targetClass.errorString()
-        }
-    }
-    Connections {
-        target: doDecrypt
-        function onClicked() {
-            var targetClass = mainWindow.currentClass()
-            sourceText.text = targetClass.decrypt(encryptedText.text)
-            errors.text = targetClass.errorString()
         }
     }
 }

@@ -11,8 +11,8 @@ class MagicSquareCipher : public EncryptionAlgorithm
 {
 
 public:
-    MagicSquareCipher(QObject *parent = nullptr);
-    MagicSquareCipher(const Matrix &magicSquare, QObject *parent = nullptr);
+    explicit MagicSquareCipher(QObject *parent = nullptr);
+    explicit MagicSquareCipher(const Matrix &magicSquare, QObject *parent = nullptr);
     ~MagicSquareCipher();
 
     QString encrypt(const QString &textForEncrypt) override;
