@@ -35,6 +35,7 @@ set(H_FILES
     ciphers/caesarcipher.h
     ciphers/gronsfeldcipher.h
     ciphers/playfaircipher.h
+    ciphers/giovanniportacipher.h
 
     dictionaries/dictionary.h
     dictionaries/digitdictionary.h
@@ -49,6 +50,7 @@ set(CPP_FILES
     ciphers/caesarcipher.cpp
     ciphers/gronsfeldcipher.cpp
     ciphers/playfaircipher.cpp
+    ciphers/giovanniportacipher.cpp
 
     dictionaries/dictionary.cpp
     dictionaries/digitdictionary.cpp

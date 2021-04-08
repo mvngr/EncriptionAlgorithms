@@ -6,7 +6,8 @@
 #include <QString>
 
 enum MergeOption {
-    FillFromOtherDict = 0
+    FillFromOtherDict = 0,
+    Numbers
 };
 
 class Dictionary

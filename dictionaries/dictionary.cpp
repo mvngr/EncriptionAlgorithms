@@ -37,6 +37,17 @@ std::vector<std::vector<QChar>> Dictionary::mergeWithDictionary(const Dictionary
             }
         }
         break;
+    case MergeOption::Numbers:
+        std::size_t counter = 0;
+        for(std::size_t i = 0; i < dictionary_.size(); i++)
+        {
+            res.push_back(std::vector<QChar>());
+            for(std::size_t j = 0; j < dict.dictionary().size(); j++)
+            {
+                res.at(i).push_back(static_cast<wchar_t>(counter++));
+            }
+        }
+        break;
     }
 
     return res;

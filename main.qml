@@ -7,6 +7,7 @@ import Ciphers.MagicSquare 1.0
 import Ciphers.Caesar 1.0
 import Ciphers.Gronsfeld 1.0
 import Ciphers.Playfair 1.0
+import Ciphers.GiovanniPorta 1.0
 
 ApplicationWindow {
     id: mainWindow
@@ -41,6 +42,9 @@ ApplicationWindow {
         case 'Playfair':
             targetClass = playfairCipher
             break
+        case 'GiovanniPorta':
+            targetClass = giovanniPortaCipher
+            break
         }
 
         return targetClass
@@ -72,6 +76,10 @@ ApplicationWindow {
             id: playfairCipher
         }
 
+        GiovanniPortaCipher {
+            id: giovanniPortaCipher
+        }
+
         ComboBox {
             id: chiperChooser
             width: parent.defaultWidth
@@ -80,6 +88,7 @@ ApplicationWindow {
             model: ListModel {
 
                 id: model
+                ListElement { text: qsTr("Шифр Джованни Порты"); value: "GiovanniPorta" }
                 ListElement { text: qsTr("Шифр Плейфера"); value: "Playfair" }
                 ListElement { text: qsTr("Шифр Гронсфельда"); value: "Gronsfeld" }
                 ListElement { text: qsTr("Шифр перестановок"); value: "Transposition" }
