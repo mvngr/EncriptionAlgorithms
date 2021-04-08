@@ -6,6 +6,7 @@ import Ciphers.Transposition 1.0
 import Ciphers.MagicSquare 1.0
 import Ciphers.Caesar 1.0
 import Ciphers.Gronsfeld 1.0
+import Ciphers.Playfair 1.0
 
 ApplicationWindow {
     id: mainWindow
@@ -14,8 +15,8 @@ ApplicationWindow {
     visible: true
     title: qsTr("Android project")
 
-    property var fontSize: 14
-    property var textColor: "#ffffff"
+    property int fontSize: 14
+    property string textColor: "#ffffff"
 
     font.pixelSize: fontSize
 
@@ -37,14 +38,17 @@ ApplicationWindow {
         case 'Gronsfeld':
             targetClass = gronsfeldCipher
             break
+        case 'Playfair':
+            targetClass = playfairCipher
+            break
         }
 
         return targetClass
     }
 
     Column {
-        property var paddingSize: parent.width * 0.02
-        property var defaultWidth: width - paddingSize * 2
+        property real paddingSize: parent.width * 0.02
+        property real defaultWidth: width - paddingSize * 2
         anchors.fill: parent
         padding: paddingSize
 
@@ -64,6 +68,10 @@ ApplicationWindow {
             id: gronsfeldCipher
         }
 
+        PlayfairCipher {
+            id: playfairCipher
+        }
+
         ComboBox {
             id: chiperChooser
             width: parent.defaultWidth
@@ -72,6 +80,7 @@ ApplicationWindow {
             model: ListModel {
 
                 id: model
+                ListElement { text: qsTr("Шифр Плейфера"); value: "Playfair" }
                 ListElement { text: qsTr("Шифр Гронсфельда"); value: "Gronsfeld" }
                 ListElement { text: qsTr("Шифр перестановок"); value: "Transposition" }
                 ListElement { text: qsTr("Шифр магический квадрат"); value: "MagicSquare" }

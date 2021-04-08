@@ -5,6 +5,11 @@ Dictionary::Dictionary()
 
 }
 
+Dictionary::~Dictionary()
+{
+
+}
+
 std::vector<QChar> Dictionary::dictionary() const
 {
     return dictionary_;
@@ -33,6 +38,25 @@ std::vector<std::vector<QChar>> Dictionary::mergeWithDictionary(const Dictionary
         }
         break;
     }
+
+    return res;
+}
+
+QString Dictionary::uniqueCharsInString(const QString &sourceString)
+{
+    std::vector<QChar> vec;
+    for(int i = 0; i < sourceString.size(); i++)
+    {
+        auto foundIt = std::find(vec.cbegin(), vec.cend(), sourceString.at(i));
+        if(foundIt == vec.cend())
+        {
+            vec.push_back(sourceString.at(i));
+        }
+    }
+
+    QString res(vec.size(), ' ');
+    for(std::size_t i = 0; i < vec.size(); i++)
+        res[static_cast<int>(i)] = vec.at(i);
 
     return res;
 }

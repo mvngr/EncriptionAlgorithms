@@ -7,6 +7,9 @@ class CyrillicDictionary : public Dictionary
 {
 public:
     CyrillicDictionary();
+    virtual ~CyrillicDictionary();
+
+    virtual std::vector<std::vector<QChar>> makeSquareDictionaryMatrix(const QString &keyword = QString()) const override;
 };
 
 #endif // CYRILLICDICTIONARY_H

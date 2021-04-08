@@ -28,11 +28,14 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick LinguistTools REQUIRED)
 
 set(H_FILES
+    commonAlghorithms.h
     encryptionalgorithm.h
     ciphers/transpositioncipher.h
     ciphers/magicsquarecipher.h
     ciphers/caesarcipher.h
     ciphers/gronsfeldcipher.h
+    ciphers/playfaircipher.h
+
     dictionaries/dictionary.h
     dictionaries/digitdictionary.h
     dictionaries/cyrillicdictionary.h
@@ -45,6 +48,8 @@ set(CPP_FILES
     ciphers/magicsquarecipher.cpp
     ciphers/caesarcipher.cpp
     ciphers/gronsfeldcipher.cpp
+    ciphers/playfaircipher.cpp
+
     dictionaries/dictionary.cpp
     dictionaries/digitdictionary.cpp
     dictionaries/cyrillicdictionary.cpp

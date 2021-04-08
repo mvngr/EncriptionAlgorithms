@@ -5,6 +5,7 @@
 #include "ciphers/magicsquarecipher.h"
 #include "ciphers/caesarcipher.h"
 #include "ciphers/gronsfeldcipher.h"
+#include "ciphers/playfaircipher.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,6 +19,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<MagicSquareCipher>("Ciphers.MagicSquare", 1, 0, "MagicSquareCipher");
     qmlRegisterType<CaesarCipher>("Ciphers.Caesar", 1, 0, "CaesarCipher");
     qmlRegisterType<GronsfeldCipher>("Ciphers.Gronsfeld", 1, 0, "GronsfeldCipher");
+    qmlRegisterType<PlayfairCipher>("Ciphers.Playfair", 1, 0, "PlayfairCipher");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
