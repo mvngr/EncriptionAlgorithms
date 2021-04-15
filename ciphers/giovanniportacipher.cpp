@@ -33,7 +33,7 @@ QString GiovanniPortaCipher::encrypt(const QString &textForEncrypt)
         }
     }
 
-    return res;
+    return wcharToNumberString(res);
 }
 
 QString GiovanniPortaCipher::decrypt(const QString &encryptedText)
@@ -41,7 +41,7 @@ QString GiovanniPortaCipher::decrypt(const QString &encryptedText)
     error_ = "";
     QString res;
 
-    QString copyText = encryptedText;
+    QString copyText = numberStringToWchar(encryptedText);
 
     for(int i = 0; i < copyText.size(); i++)
     {
@@ -73,4 +73,27 @@ bool GiovanniPortaCipher::setKey(const QString &key)
 {
     Q_UNUSED(key);
     return true;
+}
+
+QString GiovanniPortaCipher::wcharToNumberString(const QString &wcharString)
+{
+    QString resInt;
+    for(const auto &ch : wcharString.toStdWString())
+    {
+        QString numberString = QString::number(static_cast<int>(ch));
+        while(numberString.size() < 4)
+            numberString.insert(0, '0');
+        resInt.push_back(numberString);
+    }
+    return resInt;
+}
+
+QString GiovanniPortaCipher::numberStringToWchar(const QString &numberString)
+{
+    QString resStr;
+    for(int i = 0; i < numberString.size(); i+=4)
+    {
+        resStr.push_back(static_cast<wchar_t>(numberString.midRef(i, 4).toInt()));
+    }
+    return resStr;
 }

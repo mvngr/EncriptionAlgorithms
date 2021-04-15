@@ -17,6 +17,9 @@ public:
     bool setKey(const QString &key) override;
 
 private:
+    QString wcharToNumberString(const QString &wcharString);
+    QString numberStringToWchar(const QString &numberString);
+
     std::unique_ptr<Dictionary> dict_;
     std::vector<std::vector<QChar>> matrix_;
 };
