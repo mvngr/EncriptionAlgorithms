@@ -9,6 +9,7 @@ import Ciphers.Gronsfeld 1.0
 import Ciphers.Playfair 1.0
 import Ciphers.GiovanniPorta 1.0
 import Ciphers.Vigenere 1.0
+import Ciphers.Trithemius 1.0
 
 ApplicationWindow {
     id: mainWindow
@@ -49,6 +50,9 @@ ApplicationWindow {
         case 'Vigenere':
             targetClass = vigenereCipher
             break
+        case 'Trithemius':
+            targetClass = trithemiusCipher
+            break
         }
 
         return targetClass
@@ -88,6 +92,10 @@ ApplicationWindow {
             id: vigenereCipher
         }
 
+        TrithemiusCipher {
+            id: trithemiusCipher
+        }
+
         ComboBox {
             id: chiperChooser
             width: parent.defaultWidth
@@ -96,6 +104,7 @@ ApplicationWindow {
             model: ListModel {
 
                 id: model
+                ListElement { text: qsTr("Шифр Трисемуса"); value: "Trithemius" }
                 ListElement { text: qsTr("Шифр Виженера"); value: "Vigenere" }
                 ListElement { text: qsTr("Шифр Джованни Порты"); value: "GiovanniPorta" }
                 ListElement { text: qsTr("Шифр Плейфера"); value: "Playfair" }
