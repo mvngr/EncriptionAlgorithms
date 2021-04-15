@@ -8,6 +8,7 @@ import Ciphers.Caesar 1.0
 import Ciphers.Gronsfeld 1.0
 import Ciphers.Playfair 1.0
 import Ciphers.GiovanniPorta 1.0
+import Ciphers.Vigenere 1.0
 
 ApplicationWindow {
     id: mainWindow
@@ -45,6 +46,9 @@ ApplicationWindow {
         case 'GiovanniPorta':
             targetClass = giovanniPortaCipher
             break
+        case 'Vigenere':
+            targetClass = vigenereCipher
+            break
         }
 
         return targetClass
@@ -80,6 +84,10 @@ ApplicationWindow {
             id: giovanniPortaCipher
         }
 
+        VigenereCipher {
+            id: vigenereCipher
+        }
+
         ComboBox {
             id: chiperChooser
             width: parent.defaultWidth
@@ -88,6 +96,7 @@ ApplicationWindow {
             model: ListModel {
 
                 id: model
+                ListElement { text: qsTr("Шифр Виженера"); value: "Vigenere" }
                 ListElement { text: qsTr("Шифр Джованни Порты"); value: "GiovanniPorta" }
                 ListElement { text: qsTr("Шифр Плейфера"); value: "Playfair" }
                 ListElement { text: qsTr("Шифр Гронсфельда"); value: "Gronsfeld" }
