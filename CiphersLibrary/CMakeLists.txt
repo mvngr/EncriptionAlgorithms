@@ -14,7 +14,6 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
 
 set(H_FILES
     CiphersLibrary_global.h
-    cipherslibrary.h
 
     commonAlghorithms.h
 
@@ -34,7 +33,6 @@ set(H_FILES
 )
 
 set(CPP_FILES
-    cipherslibrary.cpp
 
     ciphers/encryptionalgorithm.cpp
     ciphers/transpositioncipher.cpp
