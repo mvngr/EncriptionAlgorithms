@@ -104,6 +104,7 @@ ApplicationWindow {
             model: ListModel {
 
                 id: model
+                ListElement { text: qsTr("Шифр Цезаря"); value: "Caesar" }
                 ListElement { text: qsTr("Шифр Трисемуса"); value: "Trithemius" }
                 ListElement { text: qsTr("Шифр Виженера"); value: "Vigenere" }
                 ListElement { text: qsTr("Шифр Джованни Порты"); value: "GiovanniPorta" }
@@ -111,7 +112,6 @@ ApplicationWindow {
                 ListElement { text: qsTr("Шифр Гронсфельда"); value: "Gronsfeld" }
                 ListElement { text: qsTr("Шифр перестановок"); value: "Transposition" }
                 ListElement { text: qsTr("Шифр магический квадрат"); value: "MagicSquare" }
-                ListElement { text: qsTr("Шифр Цезаря"); value: "Caesar" }
             }
 
             currentIndex: 0

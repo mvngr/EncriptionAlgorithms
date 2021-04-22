@@ -1,13 +1,15 @@
 #include "caesarcipher.h"
 
+#include "dictionaries/cyrillicdictionary.h"
+
 CaesarCipher::CaesarCipher(QObject *parent) : EncryptionAlgorithm(parent)
 {
-
+    dict_ = std::unique_ptr<CyrillicDictionary>(new CyrillicDictionary());
 }
 
 CaesarCipher::CaesarCipher(std::size_t key, QObject *parent) : EncryptionAlgorithm(parent), key_(key)
 {
-
+    dict_ = std::unique_ptr<CyrillicDictionary>(new CyrillicDictionary());
 }
 
 QString CaesarCipher::encrypt(const QString &textForEncrypt)
@@ -23,11 +25,11 @@ QString CaesarCipher::decrypt(const QString &encryptedText)
 QString CaesarCipher::makeSymbolTransposition(const QString &text, std::size_t offset)
 {
     QString res;
-    wchar_t arr[text.size()]; //Предусмотрительно заганяем в тип, при котором не полетит кирилица и латынь
-    int num = text.toWCharArray(arr);
-    for(int i = 0; i < text.size(); i++)
-        arr[i] += offset;
-    res = QString::fromWCharArray(arr, num);
+
+    for(const QChar &ch : text)
+    {
+        res.push_back(dict_->offsetChar(ch, offset));
+    }
 
     return res;
 }

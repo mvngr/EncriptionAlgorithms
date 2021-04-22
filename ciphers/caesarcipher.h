@@ -1,7 +1,10 @@
 #ifndef CAESARCIPHER_H
 #define CAESARCIPHER_H
 
+#include <memory>
+
 #include "encryptionalgorithm.h"
+#include "dictionaries/dictionary.h"
 
 class CaesarCipher : public EncryptionAlgorithm
 {
@@ -17,6 +20,7 @@ public:
 private:
     QString makeSymbolTransposition(const QString &text, std::size_t offset);
 
+    std::unique_ptr<Dictionary> dict_;
     std::size_t key_;
 };
 

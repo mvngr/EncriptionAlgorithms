@@ -43,6 +43,7 @@ MagicSquareCipher::~MagicSquareCipher()
 
 QString MagicSquareCipher::encrypt(const QString &textForEncrypt)
 {
+    error_ = "";
     QString res;
 
     if( matrixSize_ != static_cast<std::size_t>(textForEncrypt.size()) )
@@ -65,6 +66,7 @@ QString MagicSquareCipher::encrypt(const QString &textForEncrypt)
 
 QString MagicSquareCipher::decrypt(const QString &encryptedText)
 {
+    error_ = "";
     QString res(encryptedText.size());
 
     if( matrixSize_ != static_cast<std::size_t>(encryptedText.size()) )

@@ -1,5 +1,10 @@
 #include "dictionary.h"
 
+#include "commonAlghorithms.h"
+#include <QObject>
+#include <QDebug>
+#include <algorithm>
+
 Dictionary::Dictionary()
 {
 
@@ -51,6 +56,39 @@ std::vector<std::vector<QChar>> Dictionary::mergeWithDictionary(const Dictionary
     }
 
     return res;
+}
+
+QChar Dictionary::offsetChar(const QChar &sourceChar, int offset) const
+{
+    auto pos = MyAlgo::findPosition(dictionary_, sourceChar);
+    if(!pos)
+    {
+        qWarning() << QObject::tr("Не удалось найти символ %1 в словаре").arg(sourceChar);
+        return QChar('!');
+    }
+    else
+    {
+        //делаем так, чтобы у нас всегда выходило положительное число
+
+        if(offset < 0)
+        {
+            //пожалуйста, не смотрите в эту ветку if
+            //ну я же прошу
+            //не читайте код ниже по этому ифу
+            int current = *pos;
+            for(int i = 0; i < std::abs(offset); i++)
+            {
+                if(current != 0)
+                    current--;
+                else
+                    current = dictionary_.size() - 1;
+
+            }
+            return dictionary_.at(current);
+        }
+        else
+            return dictionary_.at((*pos + offset ) % dictionary_.size());
+    }
 }
 
 QString Dictionary::uniqueCharsInString(const QString &sourceString)
