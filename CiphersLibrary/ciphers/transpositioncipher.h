@@ -3,7 +3,7 @@
 
 #include "encryptionalgorithm.h"
 
-class TranspositionCipher : public EncryptionAlgorithm
+class CIPHERSLIBRARY_EXPORT TranspositionCipher : public EncryptionAlgorithm
 {
 
 public:

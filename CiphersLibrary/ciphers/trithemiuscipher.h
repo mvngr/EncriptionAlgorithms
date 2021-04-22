@@ -1,16 +1,17 @@
-#ifndef PLAYFAIRCIPHER_H
-#define PLAYFAIRCIPHER_H
+#ifndef TRITHEMIUSCIPHER_H
+#define TRITHEMIUSCIPHER_H
 
 #include <memory>
 
 #include "encryptionalgorithm.h"
 #include "dictionaries/dictionary.h"
 
-class PlayfairCipher : public EncryptionAlgorithm
+
+class CIPHERSLIBRARY_EXPORT TrithemiusCipher : public EncryptionAlgorithm
 {
 public:
-    explicit PlayfairCipher(QObject *parent = nullptr);
-    explicit PlayfairCipher(const QString &key, QObject *parent = nullptr);
+    explicit TrithemiusCipher(QObject *parent = nullptr);
+    explicit TrithemiusCipher(const QString &key, QObject *parent = nullptr);
 
     QString encrypt(const QString &textForEncrypt) override;
     QString decrypt(const QString &encryptedText) override;
@@ -21,6 +22,7 @@ private:
 
     QString key_;
     std::unique_ptr<Dictionary> dict_ = nullptr;
+    std::vector<std::vector<QChar>> matrix_;
 };
 
-#endif // PLAYFAIRCIPHER_H
+#endif // TRITHEMIUSCIPHER_H

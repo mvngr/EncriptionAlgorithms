@@ -4,11 +4,13 @@
 #include <utility>
 #include <memory>
 
+#include "CiphersLibrary_global.h"
+
 namespace MyAlgo
 {
 
 template<template<class ...> class Container1, template<class ...> class Container2, typename Type>
-std::shared_ptr<std::pair<int, int>> findPosition(const Container1<Container2<Type>> &data, const Type value)
+std::shared_ptr<std::pair<int, int>> CIPHERSLIBRARY_EXPORT findPosition(const Container1<Container2<Type>> &data, const Type value)
 {
     for(std::size_t i = 0; i < data.size(); i++)
     {
@@ -22,7 +24,7 @@ std::shared_ptr<std::pair<int, int>> findPosition(const Container1<Container2<Ty
 }
 
 template<template<class ...> class Container1, typename Type>
-std::shared_ptr<int> findPosition(const Container1<Type> &data, const Type value)
+std::shared_ptr<int> CIPHERSLIBRARY_EXPORT findPosition(const Container1<Type> &data, const Type value)
 {
     for(std::size_t i = 0; i < data.size(); i++)
     {

@@ -1,17 +1,16 @@
-#ifndef TRITHEMIUSCIPHER_H
-#define TRITHEMIUSCIPHER_H
+#ifndef VIGENERECIPHER_H
+#define VIGENERECIPHER_H
 
 #include <memory>
 
 #include "encryptionalgorithm.h"
 #include "dictionaries/dictionary.h"
 
-
-class TrithemiusCipher : public EncryptionAlgorithm
+class CIPHERSLIBRARY_EXPORT VigenereCipher : public EncryptionAlgorithm
 {
 public:
-    explicit TrithemiusCipher(QObject *parent = nullptr);
-    explicit TrithemiusCipher(const QString &key, QObject *parent = nullptr);
+    explicit VigenereCipher(QObject *parent = nullptr);
+    explicit VigenereCipher(const QString key, QObject *parent = nullptr);
 
     QString encrypt(const QString &textForEncrypt) override;
     QString decrypt(const QString &encryptedText) override;
@@ -20,9 +19,11 @@ public:
 
 private:
 
+    QString repeatKeyToSize(const int size);
+
     QString key_;
     std::unique_ptr<Dictionary> dict_ = nullptr;
     std::vector<std::vector<QChar>> matrix_;
 };
 
-#endif // TRITHEMIUSCIPHER_H
+#endif // VIGENERECIPHER_H

@@ -3,7 +3,9 @@
 
 #include "dictionary.h"
 
-class CyrillicDictionary : public Dictionary
+#include "CiphersLibrary_global.h"
+
+class CIPHERSLIBRARY_EXPORT CyrillicDictionary : public Dictionary
 {
 public:
     CyrillicDictionary();

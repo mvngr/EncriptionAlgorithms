@@ -28,37 +28,11 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick LinguistTools REQUIRED)
 
 set(H_FILES
-    commonAlghorithms.h
-    encryptionalgorithm.h
-    ciphers/transpositioncipher.h
-    ciphers/magicsquarecipher.h
-    ciphers/caesarcipher.h
-    ciphers/gronsfeldcipher.h
-    ciphers/playfaircipher.h
-    ciphers/giovanniportacipher.h
-    ciphers/vigenerecipher.h
-    ciphers/trithemiuscipher.h
 
-    dictionaries/dictionary.h
-    dictionaries/digitdictionary.h
-    dictionaries/cyrillicdictionary.h
 )
 
 set(CPP_FILES
     main.cpp
-    encryptionalgorithm.cpp
-    ciphers/transpositioncipher.cpp
-    ciphers/magicsquarecipher.cpp
-    ciphers/caesarcipher.cpp
-    ciphers/gronsfeldcipher.cpp
-    ciphers/playfaircipher.cpp
-    ciphers/giovanniportacipher.cpp
-    ciphers/vigenerecipher.cpp
-    ciphers/trithemiuscipher.cpp
-
-    dictionaries/dictionary.cpp
-    dictionaries/digitdictionary.cpp
-    dictionaries/cyrillicdictionary.cpp
 )
 
 set(PROJECT_SOURCES
@@ -66,6 +40,9 @@ set(PROJECT_SOURCES
         ${H_FILES}
         qml.qrc
 )
+
+include_directories("CiphersLibrary")
+add_subdirectory("CiphersLibrary")
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(AndroidSimpleProject
@@ -85,4 +62,4 @@ endif()
 
 target_compile_definitions(AndroidSimpleProject
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(AndroidSimpleProject PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+target_link_libraries(AndroidSimpleProject PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick CiphersLibrary)

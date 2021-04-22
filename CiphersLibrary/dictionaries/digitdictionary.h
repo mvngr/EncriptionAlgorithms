@@ -3,7 +3,7 @@
 
 #include "dictionary.h"
 
-class DigitDictionary : public Dictionary
+class CIPHERSLIBRARY_EXPORT DigitDictionary : public Dictionary
 {
 public:
     DigitDictionary();

@@ -7,7 +7,7 @@
 
 typedef std::vector<std::vector<int>> Matrix;
 
-class MagicSquareCipher : public EncryptionAlgorithm
+class CIPHERSLIBRARY_EXPORT MagicSquareCipher : public EncryptionAlgorithm
 {
 
 public:

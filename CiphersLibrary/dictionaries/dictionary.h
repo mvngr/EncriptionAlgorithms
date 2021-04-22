@@ -5,12 +5,14 @@
 #include <map>
 #include <QString>
 
+#include "CiphersLibrary_global.h"
+
 enum MergeOption {
     FillFromOtherDict = 0,
     Numbers
 };
 
-class Dictionary
+class CIPHERSLIBRARY_EXPORT Dictionary
 {
 public:
     Dictionary();

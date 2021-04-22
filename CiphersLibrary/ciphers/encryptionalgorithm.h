@@ -4,7 +4,9 @@
 #include <QString>
 #include <QObject>
 
-class EncryptionAlgorithm : public QObject
+#include "CiphersLibrary_global.h"
+
+class CIPHERSLIBRARY_EXPORT EncryptionAlgorithm : public QObject
 {
     Q_OBJECT
 public:

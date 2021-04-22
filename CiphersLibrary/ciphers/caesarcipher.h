@@ -6,7 +6,7 @@
 #include "encryptionalgorithm.h"
 #include "dictionaries/dictionary.h"
 
-class CaesarCipher : public EncryptionAlgorithm
+class CIPHERSLIBRARY_EXPORT CaesarCipher : public EncryptionAlgorithm
 {
 public:
     explicit CaesarCipher( QObject *parent = nullptr);

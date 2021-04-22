@@ -6,7 +6,7 @@
 
 #include <memory>
 
-class GiovanniPortaCipher : public EncryptionAlgorithm
+class CIPHERSLIBRARY_EXPORT GiovanniPortaCipher : public EncryptionAlgorithm
 {
 public:
     explicit GiovanniPortaCipher(QObject *parent = nullptr);

@@ -4,7 +4,7 @@
 #include "encryptionalgorithm.h"
 #include "dictionaries/cyrillicdictionary.h"
 
-class GronsfeldCipher : public EncryptionAlgorithm
+class CIPHERSLIBRARY_EXPORT GronsfeldCipher : public EncryptionAlgorithm
 {
 public:
     explicit GronsfeldCipher(QObject *parent = nullptr);
