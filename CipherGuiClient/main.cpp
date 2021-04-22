@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+#include "cipherstcpclient.h"
+
 #include "ciphers/transpositioncipher.h"
 #include "ciphers/magicsquarecipher.h"
 #include "ciphers/caesarcipher.h"
@@ -26,6 +28,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<GiovanniPortaCipher>("Ciphers.GiovanniPorta", 1, 0, "GiovanniPortaCipher");
     qmlRegisterType<VigenereCipher>("Ciphers.Vigenere", 1, 0, "VigenereCipher");
     qmlRegisterType<TrithemiusCipher>("Ciphers.Trithemius", 1, 0, "TrithemiusCipher");
+    qmlRegisterType<CiphersTcpClient>("CiphersTcpClient", 1, 0, "TcpClient");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));

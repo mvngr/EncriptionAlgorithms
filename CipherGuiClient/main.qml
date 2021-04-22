@@ -10,6 +10,7 @@ import Ciphers.Playfair 1.0
 import Ciphers.GiovanniPorta 1.0
 import Ciphers.Vigenere 1.0
 import Ciphers.Trithemius 1.0
+import CiphersTcpClient 1.0
 
 ApplicationWindow {
     id: mainWindow
@@ -63,6 +64,10 @@ ApplicationWindow {
         property real defaultWidth: width - paddingSize * 2
         anchors.fill: parent
         padding: paddingSize
+
+        TcpClient {
+            id: tcpClient
+        }
 
         MagicSquareCipher {
             id: magicSquareCipher
@@ -194,6 +199,31 @@ ApplicationWindow {
             text: ""
             font.pixelSize: fontSize
             color: '#ff6666'
+        }
+
+        Text {
+            id: serverBoxPlaceholder
+            text: qsTr("Взаимодействие с сервером")
+            font.pixelSize: fontSize
+            color: textColor
+        }
+
+        Button {
+            id: sendToServer
+            text: qsTr("Отправить на сервер")
+            onClicked: function() {
+                var targetClass = mainWindow.currentClass()
+                tcpClient.sendDataToServer(targetClass.encrypt(sourceText.text))
+            }
+        }
+
+        TextArea {
+            id: textArea
+            placeholderText: qsTr("Информация с сервера")
+            width: parent.defaultWidth
+            height: 100
+            enabled: false
+            color: textColor
         }
     }
 }

@@ -11,10 +11,23 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Network REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Network REQUIRED)
+
+include_directories("../CiphersLibrary")
+
+set(H_FILES
+    cipherstcpserver.h
+    )
+
+set(CPP_FILES
+    main.cpp
+
+    cipherstcpserver.cpp
+    )
 
 add_executable(CipherConsoleServer
-  main.cpp
+    ${H_FILES}
+    ${CPP_FILES}
 )
-target_link_libraries(CipherConsoleServer Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(CipherConsoleServer Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Network CiphersLibrary)
