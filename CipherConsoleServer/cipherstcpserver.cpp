@@ -36,7 +36,27 @@ void CiphersTcpServer::onReadyRead()
 {
     QTcpSocket *sender = static_cast<QTcpSocket *>(QObject::sender());
     QByteArray data = sender->readAll();
-    qDebug() << QString::fromLocal8Bit(data);
+    QString recievedString = QString::fromLocal8Bit(data);
+    int index = recievedString.indexOf(';');
+    if(index == -1)
+        recievedString = tr("Не удалось получить название шифра. Принято сообщение: %1").arg(recievedString);
+    else
+    {
+        QString cipher = recievedString.mid(0, index);
+        auto foundIt = decryptFuncs_.find(cipher);
+        if(foundIt == decryptFuncs_.end())
+        {
+            recievedString = tr("Не удалось распознать название шифра: %1").arg(cipher);
+        }
+        else
+        {
+            QString message = recievedString.mid(index + 1);
+            recievedString = message + tr(" <--- Это сообщение принято. Пытаюсь расшифровать дефолтным ключом: ") + foundIt->second(message);
+        }
+
+    }
+
+    sender->write(recievedString.toLocal8Bit());
 }
 
 void CiphersTcpServer::onSocketStateChanged(QAbstractSocket::SocketState socketState)

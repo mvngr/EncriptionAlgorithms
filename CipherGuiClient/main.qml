@@ -15,7 +15,7 @@ import CiphersTcpClient 1.0
 ApplicationWindow {
     id: mainWindow
     width: 640
-    height: 480
+    height: 600
     visible: true
     title: qsTr("Android project")
 
@@ -67,6 +67,10 @@ ApplicationWindow {
 
         TcpClient {
             id: tcpClient
+
+            onRecieveMessageFromServer: function() {
+                textArea.text = serverMessage
+            }
         }
 
         MagicSquareCipher {
@@ -202,10 +206,16 @@ ApplicationWindow {
         }
 
         Text {
-            id: serverBoxPlaceholder
-            text: qsTr("Взаимодействие с сервером")
+            id: ipServerPlaceholder
+            text: qsTr("IP адрес сервера:")
             font.pixelSize: fontSize
             color: textColor
+        }
+
+        TextField {
+            id: ipServer
+            text: "127.0.0.1"
+            width: parent.defaultWidth
         }
 
         Button {
@@ -213,8 +223,16 @@ ApplicationWindow {
             text: qsTr("Отправить на сервер")
             onClicked: function() {
                 var targetClass = mainWindow.currentClass()
-                tcpClient.sendDataToServer(targetClass.encrypt(sourceText.text))
+                var cipherName = chiperChooser.model.get(chiperChooser.currentIndex).value
+                tcpClient.sendDataToServer(cipherName, targetClass.encrypt(sourceText.text))
             }
+        }
+
+        Text {
+            id: serverBoxPlaceholder
+            text: qsTr("Информация с сервера:")
+            font.pixelSize: fontSize
+            color: textColor
         }
 
         TextArea {
@@ -224,7 +242,10 @@ ApplicationWindow {
             height: 100
             enabled: false
             color: textColor
+            wrapMode: Text.WordWrap
         }
+
+
     }
 }
 

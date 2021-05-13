@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.14)
 
-add_subdirectory("CipherConsoleServer")
+project(EncriptionAlgorithms)
+
+if(NOT ANDROID)
+    add_subdirectory("CipherConsoleServer")
+    add_subdirectory("CiphersLibrary")
+endif()
 add_subdirectory("CipherGuiClient")
-add_subdirectory("CiphersLibrary")

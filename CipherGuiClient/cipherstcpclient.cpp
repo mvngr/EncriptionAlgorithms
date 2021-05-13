@@ -9,17 +9,22 @@ CiphersTcpClient::CiphersTcpClient(QObject *parent) : QObject(parent)
     connect(&socket_, &QTcpSocket::readyRead, this, &CiphersTcpClient::onReadyRead);
 }
 
-bool CiphersTcpClient::sendDataToServer(const QString &data)
+bool CiphersTcpClient::sendDataToServer(const QString &cipherName, const QString &data)
 {
-    return socket_.write(data.toLocal8Bit()) != -1;
+    return socket_.write((cipherName + ';' + data).toLocal8Bit()) != -1;
 }
 
 void CiphersTcpClient::onReadyRead()
 {
     QByteArray data = socket_.readAll();
-    serverMessage_ = QString::fromLatin1(data);
+    serverMessage_ = QString::fromLocal8Bit(data);
     emit recieveMessageFromServer();
-    qDebug() << data;
+}
+
+void CiphersTcpClient::setHost(const QString &host)
+{
+    socket_.disconnectFromHost();
+    socket_.connectToHost(QHostAddress(host), 12393);
 }
 
 QString CiphersTcpClient::serverMessage() const
