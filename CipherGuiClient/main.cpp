@@ -11,6 +11,7 @@
 #include "ciphers/giovanniportacipher.h"
 #include "ciphers/vigenerecipher.h"
 #include "ciphers/trithemiuscipher.h"
+#include "ciphers/spiralcipher.h"
 
 int main(int argc, char *argv[])
 {
@@ -28,6 +29,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<GiovanniPortaCipher>("Ciphers.GiovanniPorta", 1, 0, "GiovanniPortaCipher");
     qmlRegisterType<VigenereCipher>("Ciphers.Vigenere", 1, 0, "VigenereCipher");
     qmlRegisterType<TrithemiusCipher>("Ciphers.Trithemius", 1, 0, "TrithemiusCipher");
+    qmlRegisterType<SpiralCipher>("Ciphers.Spiral", 1, 0, "SpiralCipher");
     qmlRegisterType<CiphersTcpClient>("CiphersTcpClient", 1, 0, "TcpClient");
 
     QQmlApplicationEngine engine;

@@ -26,6 +26,7 @@ set(H_FILES
     ciphers/giovanniportacipher.h
     ciphers/vigenerecipher.h
     ciphers/trithemiuscipher.h
+    ciphers/spiralcipher.h
 
     dictionaries/dictionary.h
     dictionaries/digitdictionary.h
@@ -43,6 +44,7 @@ set(CPP_FILES
     ciphers/giovanniportacipher.cpp
     ciphers/vigenerecipher.cpp
     ciphers/trithemiuscipher.cpp
+    ciphers/spiralcipher.cpp
 
     dictionaries/dictionary.cpp
     dictionaries/digitdictionary.cpp

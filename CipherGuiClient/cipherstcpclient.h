@@ -13,7 +13,7 @@ public:
 
     Q_INVOKABLE bool sendDataToServer(const QString &cipherName, const QString &data);
     void onReadyRead();
-    void setHost(const QString &host);
+    Q_INVOKABLE void setHost(const QString &host);
 
     QString serverMessage() const;
 

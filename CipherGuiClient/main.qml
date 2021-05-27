@@ -10,6 +10,7 @@ import Ciphers.Playfair 1.0
 import Ciphers.GiovanniPorta 1.0
 import Ciphers.Vigenere 1.0
 import Ciphers.Trithemius 1.0
+import Ciphers.Spiral 1.0
 import CiphersTcpClient 1.0
 
 ApplicationWindow {
@@ -53,6 +54,9 @@ ApplicationWindow {
             break
         case 'Trithemius':
             targetClass = trithemiusCipher
+            break
+        case 'Spiral':
+            targetClass = spiralCipher
             break
         }
 
@@ -105,6 +109,10 @@ ApplicationWindow {
             id: trithemiusCipher
         }
 
+        SpiralCipher {
+            id: spiralCipher
+        }
+
         ComboBox {
             id: chiperChooser
             width: parent.defaultWidth
@@ -113,6 +121,8 @@ ApplicationWindow {
             model: ListModel {
 
                 id: model
+
+                ListElement { text: qsTr("Шифр Спирали"); value: "Spiral" }
                 ListElement { text: qsTr("Шифр Цезаря"); value: "Caesar" }
                 ListElement { text: qsTr("Шифр Трисемуса"); value: "Trithemius" }
                 ListElement { text: qsTr("Шифр Виженера"); value: "Vigenere" }
@@ -216,6 +226,9 @@ ApplicationWindow {
             id: ipServer
             text: "127.0.0.1"
             width: parent.defaultWidth
+            onTextChanged: function() {
+                tcpClient.setHost(ipServer.text);
+            }
         }
 
         Button {
